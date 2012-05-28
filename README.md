@@ -17,6 +17,9 @@ Quick start for users
 Useful links
 ------------
 
+**Note:** The module package changed from `net.liftweb.paypal` to `net.liftmodules.paypal` in May 2012.  Please consider this when referencing documentation written before that date.
+
+
 * Found a problem?  Have a suggestion?  Please discuss it on the [Lift mailing list](https://groups.google.com/group/liftweb) before raising a ticket.
 
 * Manning [offer a free PDF](http://www.manning.com/free/excerpt_perrett_a.html) titled _Collecting payment through PayPal_ which you can access in exchange for your name and email address.

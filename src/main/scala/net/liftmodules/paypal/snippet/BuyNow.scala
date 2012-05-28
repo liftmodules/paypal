@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package net.liftweb.paypal {
+package net.liftmodules.paypal {
 package snippet {
   
   import scala.xml.NodeSeq
-  import net.liftweb.paypal.PaypalRules
+  import net.liftmodules.paypal.PaypalRules
   import net.liftweb.http.{DispatchSnippet}
   
   trait BuyNowSnippet extends DispatchSnippet {

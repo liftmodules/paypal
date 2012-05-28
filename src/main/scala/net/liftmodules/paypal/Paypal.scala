@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.liftweb
+package net.liftmodules
 package paypal
 
 import java.io._
@@ -24,6 +24,7 @@ import collection.mutable.ListBuffer
 import org.apache.commons.httpclient.{HttpClient, NameValuePair}
 import org.apache.commons.httpclient.methods._
 
+import net.liftweb._
 import common._
 import actor._
 import util._
