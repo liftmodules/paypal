@@ -1,6 +1,5 @@
 name := "paypal"
 
-
 liftVersion <<= liftVersion ?? "2.5-SNAPSHOT"
 
 version <<= liftVersion apply { _ + "-1.1-SNAPSHOT" }
@@ -9,7 +8,7 @@ organization := "net.liftmodules"
  
 scalaVersion := "2.9.2"
 
-crossScalaVersions := Seq("2.9.2", "2.9.1-1", "2.9.1", "2.9.0-1", "2.9.0")
+crossScalaVersions := Seq("2.9.2", "2.9.1-1", "2.9.1")
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
@@ -35,7 +34,6 @@ libraryDependencies <++= scalaVersion { sv =>
   Nil
 }
 
-
 publishTo <<= version { _.endsWith("SNAPSHOT") match {
  	case true  => Some("snapshots" at "https://oss.sonatype.org/content/repositories/snapshots")
  	case false => Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2")
@@ -57,9 +55,8 @@ publishArtifact in Test := false
 
 pomIncludeRepository := { _ => false }
 
-
 pomExtra := (
-	<url></url>
+	<url>https://github.com/liftmodules/paypal</url>
 	<licenses>
 		<license>
 	      <name>Apache 2.0 License</name>
