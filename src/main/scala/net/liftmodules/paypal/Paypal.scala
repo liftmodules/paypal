@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2011 WorldWide Conferencing, LLC
+ * Copyright 2007-2013 WorldWide Conferencing, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -287,7 +287,7 @@ private object StreamResponseProcessor {
       doRead
       ret.toList
     } catch {
-      case _ => Nil
+      case _ : Throwable => Nil
     }
   }
 }
@@ -474,7 +474,7 @@ trait PaypalPDT extends BasePaypalTrait {
 
   def processPDT(r: Req)(): Box[LiftResponse] = {
     for (tx <- r.param("tx");
-         val resp = PaypalDataTransfer(paypalAuthToken, tx, mode, connection);
+         resp = PaypalDataTransfer(paypalAuthToken, tx, mode, connection);
          info <- resp.paypalInfo;
          redir <- tryo(pdtResponse(info, r))) yield {
       redir
