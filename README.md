@@ -3,31 +3,28 @@ PayPal Lift Module
 
 This module provides integration with PayPal IPN and PDT.
 
----
+To include this module in your Lift project, update your `libraryDependencies` in `build.sbt` to include:
 
-Quick start for users
-=====================
+*Lift 2.5.x* for Scala 2.9 and 2.10:
 
-[TODO]
+    "net.liftmodules" %% "paypal_2.5" % "1.2"
 
+*Lift 3.0.x* for Scala 2.10:
 
----
-
-
-Useful links
-------------
-
-**Note:** The module package changed from `net.liftweb.paypal` to `net.liftmodules.paypal` in May 2012.  Please consider this when referencing documentation written before that date.
+    "net.liftmodules" %% "paypal_3.0" % "1.2-SNAPSHOT"
 
 
-* Found a problem?  Have a suggestion?  Please discuss it on the [Lift mailing list](https://groups.google.com/group/liftweb) before raising a ticket.
+Documentation
+=============
 
 * Manning [offer a free PDF](http://www.manning.com/free/excerpt_perrett_a.html) titled _Collecting payment through PayPal_ which you can access in exchange for your name and email address.
 
 * Chapter 5 of [Lift in Action](http://www.manning.com/perrett/).
 
+**Note:** The module package changed from `net.liftweb.paypal` to `net.liftmodules.paypal` in May 2012.  Please consider this when referencing documentation written before that date.
 
----
+* Found a problem?  Have a suggestion?  Please discuss it on the [Lift mailing list](https://groups.google.com/group/liftweb) before raising a ticket.
+
 
 Notes for module developers
 ===========================
