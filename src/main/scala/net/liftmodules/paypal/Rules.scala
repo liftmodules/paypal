@@ -30,15 +30,15 @@ package paypal {
     }
     
     val mode = new FactoryMaker[() => PaypalMode](() => Props.mode match {
-      case Props.RunModes.Production => PaypalLive
-      case _ => PaypalSandbox
+      case Props.RunModes.Production => () => PaypalLive
+      case _ => () => PaypalSandbox
     }){}
     
-    val connection = new FactoryMaker[() => PaypalConnection](() => PaypalSSL){}
+    val connection = new FactoryMaker[() => PaypalConnection](() => () => PaypalSSL){}
     
     val currency = new FactoryMaker[() => String](() => Currency.getInstance(Locale.getDefault).getCurrencyCode){}
     
-    val button = new FactoryMaker[() => String](() => "/classpath/paypal/en_buynow_68x23.gif"){}
+    val button = new FactoryMaker[() => String](() => () => "/classpath/paypal/en_buynow_68x23.gif"){}
     
   }
   
