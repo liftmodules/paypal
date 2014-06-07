@@ -14,32 +14,32 @@
  * limitations under the License.
  */
 
-package net.liftmodules {
-package paypal {
+package net.liftmodules 
+package paypal 
   
-  import net.liftweb.util.Props
-  import net.liftweb.http.{Factory,ResourceServer}
-  import java.util.{Currency,Locale}
+import net.liftweb.util.Props
+import net.liftweb.util.Vendor._
+import net.liftweb.http.{Factory,ResourceServer}
+import java.util.{Currency,Locale}
   
-  object PaypalRules extends Factory {
+object PaypalRules extends Factory {
     
-    def init {
-      ResourceServer.allow {
-        case "paypal" :: _ :: Nil => true
-      }
+  def init {
+    ResourceServer.allow {
+      case "paypal" :: _ :: Nil => true
     }
-    
-    val mode = new FactoryMaker[() => PaypalMode](() => Props.mode match {
-      case Props.RunModes.Production => () => PaypalLive
-      case _ => () => PaypalSandbox
-    }){}
-    
-    val connection = new FactoryMaker[() => PaypalConnection](() => () => PaypalSSL){}
-    
-    val currency = new FactoryMaker[() => String](() => Currency.getInstance(Locale.getDefault).getCurrencyCode){}
-    
-    val button = new FactoryMaker[() => String](() => () => "/classpath/paypal/en_buynow_68x23.gif"){}
-    
   }
+    
+  val mode = new FactoryMaker[() => PaypalMode](() => Props.mode match {
+    case Props.RunModes.Production => PaypalLive
+    case _ => PaypalSandbox
+  }){}
+    
+  val connection = new FactoryMaker[() => PaypalConnection](() => PaypalSSL){}
   
-}}
+  val currency = new FactoryMaker[() => String](() => Currency.getInstance(Locale.getDefault).getCurrencyCode){}
+    
+  val button = new FactoryMaker[() => String](() => "/classpath/paypal/en_buynow_68x23.gif"){}
+    
+}
+  
