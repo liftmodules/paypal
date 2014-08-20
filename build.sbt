@@ -12,7 +12,7 @@ moduleName <<= (name, liftEdition) { (n, e) =>  n + "_" + e }
 
 scalaVersion := "2.10.3"
 
-crossScalaVersions := Seq("2.11.1", "2.10.4", "2.9.2", "2.9.1-1", "2.9.1")
+crossScalaVersions := Seq("2.11.2", "2.10.4", "2.9.2", "2.9.1-1", "2.9.1")
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
@@ -25,16 +25,14 @@ libraryDependencies <++= liftVersion { v =>
   Nil
 }
 
-libraryDependencies <++= scalaVersion { sv =>
-  "commons-httpclient" % "commons-httpclient" % "3.1" ::
-  (sv match {
-    case "2.9.2" | "2.9.1" | "2.9.1-1" => "org.specs2" %% "specs2" % "1.12.3" % "test"
-    case "2.11.0" | "2.11.1" =>  "org.specs2" %% "specs2" % "2.3.11" % "test"
-    case _ => "org.specs2" %% "specs2" % "1.13" % "test"
-   }) ::
-  Nil
-}
+libraryDependencies += "commons-httpclient" % "commons-httpclient" % "3.1"
 
+libraryDependencies <+= scalaVersion { sv => sv match {
+  case "2.9.2" | "2.9.1" | "2.9.1-1" => "org.specs2" %% "specs2" % "1.12.3" % "test"
+  case "2.10.4"                      => "org.specs2" %% "specs2" % "1.13"   % "test"
+  case _                             => "org.specs2" %% "specs2" % "2.3.11" % "test"
+ }
+}
 
 publishTo <<= version { _.endsWith("SNAPSHOT") match {
  	case true  => Some("snapshots" at "https://oss.sonatype.org/content/repositories/snapshots")
@@ -78,4 +76,3 @@ pomExtra := (
 	 	</developer>
 	 </developers>
  )
-
