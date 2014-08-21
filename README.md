@@ -35,6 +35,21 @@ Documentation
 * Found a problem?  Have a suggestion?  Please discuss it on the [Lift mailing list](https://groups.google.com/group/liftweb) before raising a ticket.
 
 
+Customization
+=============
+
+
+Alt text
+--------
+
+To customize the alt text of the buy now button, set up a [resources entry](https://www.assembla.com/spaces/liftweb/wiki/Localization) for the key _liftmodules.paypal.button-alt-text_. For example, create _webapp/\_resources.html_, with the following content:
+
+    <?xml version="1.0"?>
+    <resources>
+      <res name="liftmodules.paypal.button-alt-text">Place order now</res>
+    </resources>
+
+
 Notes for module developers
 ===========================
 
