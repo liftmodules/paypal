@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2013 WorldWide Conferencing, LLC
+ * Copyright 2007-2014 WorldWide Conferencing, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,32 +16,33 @@
 
 package net.liftmodules.paypal {
 package snippet {
-  
-  import scala.xml.NodeSeq
+
+  import scala.xml.{Text,NodeSeq}
   import net.liftmodules.paypal.PaypalRules
-  import net.liftweb.http.{DispatchSnippet}
-  
+  import net.liftweb.http.{S,DispatchSnippet}
+
   trait BuyNowSnippet extends DispatchSnippet {
     def dispatch = {
       case _ => buynow _
     }
-    
+
     def amount: Double
-    
+
     def values: Map[String,String] = Map()
-    
-    def buynow(xhtml: NodeSeq): NodeSeq = 
-      <form name="_xclick" 
-            action={PaypalRules.connection.vend().protocol+"://"+PaypalRules.mode.vend().domain+"/cgi-bin/webscr"} 
+
+    def buynow(xhtml: NodeSeq): NodeSeq =
+      <form name="_xclick"
+            action={PaypalRules.connection.vend().protocol+"://"+PaypalRules.mode.vend().domain+"/cgi-bin/webscr"}
             method="post">
         <input type="hidden" name="cmd" value="_xclick" />
         <input type="hidden" name="amount" value={amount.toString} />
         <input type="hidden" name="currency_code" value={PaypalRules.currency.vend()} />
         { values.-("amount","currency_code","cmd","submit")
             .map(x => <input type="hidden" name={x._1} value={x._2} />) }
-        <input type="image" src={PaypalRules.button.vend()} name="submit" alt="" />
+        <input type="image" src={PaypalRules.button.vend()} name="submit" alt={altText} />
       </form>
-      
+
+    lazy val altText: NodeSeq = S.loc("liftmodules.paypal.button-alt-text") openOr Text("Buy Now")
   }
-  
+
 }}
