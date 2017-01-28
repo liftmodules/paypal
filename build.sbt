@@ -2,9 +2,9 @@ name := "paypal"
 
 organization := "net.liftmodules"
 
-version := "1.3-SNAPSHOT"
+version := "1.3"
 
-liftVersion <<= liftVersion ?? "2.6-SNAPSHOT"
+liftVersion <<= liftVersion ?? "2.6.3"
 
 liftEdition <<= liftVersion apply { _.substring(0,3) }
 
@@ -12,11 +12,9 @@ moduleName <<= (name, liftEdition) { (n, e) =>  n + "_" + e }
 
 scalaVersion := "2.10.3"
 
-crossScalaVersions := Seq("2.11.2", "2.10.4", "2.9.2", "2.9.1-1", "2.9.1")
+crossScalaVersions := Seq("2.11.2", "2.10.4")
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
-
-resolvers += "CB Central Mirror" at "http://repo.cloudbees.com/content/groups/public"
 
 resolvers += "Java.net Maven2 Repository" at "http://download.java.net/maven/2/"
 
@@ -28,7 +26,6 @@ libraryDependencies <++= liftVersion { v =>
 libraryDependencies += "commons-httpclient" % "commons-httpclient" % "3.1"
 
 libraryDependencies <+= scalaVersion { sv => sv match {
-  case "2.9.2" | "2.9.1" | "2.9.1-1" => "org.specs2" %% "specs2" % "1.12.3" % "test"
   case "2.10.4"                      => "org.specs2" %% "specs2" % "1.13"   % "test"
   case _                             => "org.specs2" %% "specs2" % "2.3.11" % "test"
  }
@@ -40,14 +37,11 @@ publishTo <<= version { _.endsWith("SNAPSHOT") match {
   }
  }
 
+credentials ++= (for {
+  username <- Option(System.getenv().get("SONATYPE_USERNAME"))
+  password <- Option(System.getenv().get("SONATYPE_PASSWORD"))
+} yield Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", username, password)).toSeq
 
-// For local deployment:
-
-credentials += Credentials( file("sonatype.credentials") )
-
-// For the build server:
-
-credentials += Credentials( file("/private/liftmodules/sonatype.credentials") )
 
 publishMavenStyle := true
 
