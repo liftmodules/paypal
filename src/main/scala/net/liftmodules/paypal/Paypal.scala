@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2013 WorldWide Conferencing, LLC
+ * Copyright 2007-2017 WorldWide Conferencing, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 
 package net.liftmodules
 package paypal
+
+import scala.language.implicitConversions
 
 import java.io._
 
@@ -219,7 +221,7 @@ private object PostMethodFactory {
   }
 
   implicit def tonvp(in: Seq[(String, String)]): Array[NameValuePair] =
-  in.map(p => new NameValuePair(p._1, p._2)).toArray
+    in.map(p => new NameValuePair(p._1, p._2)).toArray
 }
 
 /**
@@ -540,7 +542,7 @@ trait PaypalIPN extends BasePaypalTrait {
   protected object requestQueue extends LiftActor {
     protected def messageHandler =
       {
-        case PingMe => Schedule.schedule(this, PingMe, 10 seconds)
+        case PingMe => Schedule.schedule(this, PingMe, 10.seconds)
 
         case IPNRequest(r, cnt, _) if cnt > MaxRetry => // discard the transaction
 

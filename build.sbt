@@ -1,41 +1,36 @@
+import LiftModule.{liftVersion, liftEdition}
+
 name := "paypal"
 
 organization := "net.liftmodules"
 
-version := "1.3"
+version := "1.3.0"
 
-liftVersion <<= liftVersion ?? "2.6.3"
+liftVersion := "3.0.1"
 
-liftEdition <<= liftVersion apply { _.substring(0,3) }
+liftEdition := liftVersion.value.substring(0,3)
 
-moduleName <<= (name, liftEdition) { (n, e) =>  n + "_" + e }
+moduleName := name.value + "_" + liftEdition.value
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.12.1"
 
-crossScalaVersions := Seq("2.11.2", "2.10.4")
+crossScalaVersions := Seq("2.12.1", "2.11.8")
 
-scalacOptions ++= Seq("-unchecked", "-deprecation")
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
 resolvers += "Java.net Maven2 Repository" at "http://download.java.net/maven/2/"
 
-libraryDependencies <++= liftVersion { v =>
-  "net.liftweb" %% "lift-webkit" % v % "provided" ::
+libraryDependencies ++=
+  "net.liftweb"       %%  "lift-webkit"        %  liftVersion.value %  "provided" ::
+  "org.specs2"        %%  "specs2-core"        %  "3.8.7"           %  "test" ::
+  "commons-httpclient" %  "commons-httpclient" %  "3.1" ::
   Nil
-}
 
-libraryDependencies += "commons-httpclient" % "commons-httpclient" % "3.1"
-
-libraryDependencies <+= scalaVersion { sv => sv match {
-  case "2.10.4"                      => "org.specs2" %% "specs2" % "1.13"   % "test"
-  case _                             => "org.specs2" %% "specs2" % "2.3.11" % "test"
- }
-}
-
-publishTo <<= version { _.endsWith("SNAPSHOT") match {
+publishTo := (version.value.endsWith("SNAPSHOT") match {
  	case true  => Some("snapshots" at "https://oss.sonatype.org/content/repositories/snapshots")
  	case false => Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2")
   }
- }
+)
 
 credentials ++= (for {
   username <- Option(System.getenv().get("SONATYPE_USERNAME"))

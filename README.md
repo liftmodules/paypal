@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/liftmodules/paypal.svg?branch=master)](https://travis-ci.org/liftmodules/paypal)
+
 PayPal Lift Module
 ==================
 
@@ -5,22 +7,27 @@ This module provides integration with PayPal IPN and PDT.
 
 To include this module in your Lift project, update your `libraryDependencies` in `build.sbt` to include:
 
-*Lift 2.6.x* for Scala 2.9 and 2.10:
 
-    "net.liftmodules" %% "paypal_2.6" % "1.2"
+    "net.liftmodules" %% "paypal_<Lift Edition>" % "<Module Version>"
 
-*Lift 2.6.x* for Scala 2.11:
-
-    "net.liftmodules" %% "paypal_2.6" % "1.3"
+...replacing `<Lift Edition>` and `<Module Version>` with a value from the "Releases" table below.
+E.g., for Lift 3.0 and version 1.3.0 of this module you'd have:
 
 
-*Lift 2.5.x* for Scala 2.9 and 2.10:
+    libraryDependencies +=
+      "net.liftmodules" %% "paypal_3.0" % "1.3.0"
 
-    "net.liftmodules" %% "paypal_2.5" % "1.2"
+Releases
+========
 
-*Lift 3.0.x* for Scala 2.10 and 2.11:
-
-    "net.liftmodules" %% "paypal_3.0" % "1.3-SNAPSHOT"
+| Lift Edition | Scala Version | Module Version |
+|--------------|---------------|----------------|
+| 3.0          | 2.12    | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.0_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.0_2.12) |
+| 3.0          | 2.11    | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.0_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.0_2.11) |
+| 2.6          | 2.11          | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_2.6_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_2.6_2.11) |
+| 2.6          | 2.10          | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_2.6_2.10/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_2.6_2.10) |
+| 2.6          | 2.10, 2.9     | 1.2            |
+| 2.5          | 2.10, 2.9     | 1.2            |
 
 
 Documentation
@@ -53,7 +60,6 @@ To customize the alt text of the buy now button, set up a [resources entry](http
 Notes for module developers
 ===========================
 
-* The [Jenkins build](https://liftmodules.ci.cloudbees.com/job/PayPal/) is triggered on a push to master.
-
+Merge to master will trigger a Travis build and publish a SNAPSHOT (if the version is a -SNAPSHOT).
 
 

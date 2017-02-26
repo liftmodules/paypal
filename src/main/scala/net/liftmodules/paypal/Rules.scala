@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2013 WorldWide Conferencing, LLC
+ * Copyright 2007-2017 WorldWide Conferencing, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ object PaypalRules extends Factory {
     
   val connection = new FactoryMaker[() => PaypalConnection](() => PaypalSSL){}
   
-  val currency = new FactoryMaker[() => String](() => Currency.getInstance(Locale.getDefault).getCurrencyCode){}
+  val currency = new FactoryMaker[() => String](() => Currency.getInstance(Locale.getDefault()).getCurrencyCode()){}
     
   val button = new FactoryMaker[() => String](() => "/classpath/paypal/en_buynow_68x23.gif"){}
     
