@@ -11,17 +11,20 @@ To include this module in your Lift project, update your `libraryDependencies` i
     "net.liftmodules" %% "paypal_<Lift Edition>" % "<Module Version>"
 
 ...replacing `<Lift Edition>` and `<Module Version>` with a value from the "Releases" table below.
-E.g., for Lift 3.1 and version 1.4.0 of this module you'd have:
+E.g., for Lift 3.2 and version 1.5.0 of this module you'd have:
 
 
     libraryDependencies +=
-      "net.liftmodules" %% "paypal_3.1" % "1.4.0"
+      "net.liftmodules" %% "paypal_3.2" % "1.5.0"
 
 Releases
 ========
 
 | Lift Edition | Scala Version | Module Version |
 |--------------|---------------|----------------|
+|--------------|---------------|----------------|
+| 3.2          | 2.12          | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.2_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.2_2.12) |
+| 3.2          | 2.11          | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.2_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.2_2.11)  |
 | 3.1          | 2.12          | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.1_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.1_2.12) |
 | 3.1          | 2.11          | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.1_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.1_2.11)  |
 | 3.0          | 2.12    | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.0_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.liftmodules/paypal_3.0_2.12) |
