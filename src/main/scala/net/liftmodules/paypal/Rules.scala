@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2017 WorldWide Conferencing, LLC
+ * Copyright 2007-2020 WorldWide Conferencing, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,32 +14,32 @@
  * limitations under the License.
  */
 
-package net.liftmodules 
-package paypal 
-  
+package net.liftmodules
+package paypal
+
 import net.liftweb.util.Props
 import net.liftweb.util.Vendor._
 import net.liftweb.http.{Factory,ResourceServer}
 import java.util.{Currency,Locale}
-  
+
 object PaypalRules extends Factory {
-    
-  def init {
+
+  def init: Unit = {
     ResourceServer.allow {
       case "paypal" :: _ :: Nil => true
     }
   }
-    
+
   val mode = new FactoryMaker[() => PaypalMode](() => Props.mode match {
     case Props.RunModes.Production => PaypalLive
     case _ => PaypalSandbox
   }){}
-    
+
   val connection = new FactoryMaker[() => PaypalConnection](() => PaypalSSL){}
-  
+
   val currency = new FactoryMaker[() => String](() => Currency.getInstance(Locale.getDefault()).getCurrencyCode()){}
-    
+
   val button = new FactoryMaker[() => String](() => "/classpath/paypal/en_buynow_68x23.gif"){}
-    
+
 }
-  
+

@@ -6,23 +6,21 @@ organization := "net.liftmodules"
 
 version := "1.6.0-SNAPSHOT"
 
-liftVersion := "3.2.0"
+liftVersion := "3.4.1"
 
 liftEdition := liftVersion.value.substring(0,3)
 
 moduleName := name.value + "_" + liftEdition.value
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.11"
 
-crossScalaVersions := Seq("2.12.6", "2.11.11")
+crossScalaVersions := Seq("2.13.2", "2.12.11")
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
-resolvers += "Java.net Maven2 Repository" at "http://download.java.net/maven/2/"
-
 libraryDependencies ++=
   "net.liftweb"       %%  "lift-webkit"        %  liftVersion.value %  "provided" ::
-  "org.specs2"        %%  "specs2-core"        %  "3.8.7"           %  "test" ::
+  // "org.specs2"        %%  "specs2-core"        %  "3.8.7"           %  "test" ::
   "commons-httpclient" %  "commons-httpclient" %  "3.1" ::
   Nil
 
