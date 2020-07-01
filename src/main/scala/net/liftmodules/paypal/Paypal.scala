@@ -1,5 +1,5 @@
 /*
- * Copyright 2007-2017 WorldWide Conferencing, LLC
+ * Copyright 2007-2020 WorldWide Conferencing, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -179,9 +179,9 @@ class PayPalInfo(params: HasParams) {
   val auctionBuyerId  = r.param("auction_buyer_id")
   override def toString: String = {
   val s1 = "itemName={"+ itemName +"}, business={"+ business +"}, itemNumber={"+ itemNumber +"}, paymentStatus={"+ paymentStatus +"}, mcGross={"+ mcGross +"}, paymentCurrency={"+ paymentCurrency +"}, txnId={"+ txnId +"}, receiverEmail={"+ receiverEmail
-  val s2 = "}, receiverId={"+ receiverId +"}, quantity={"+ quantity +"}, numCartItems={"+ numCartItems +"}, paymentDate={"+ paymentDate +"}, firstName={"+ firstName +"}, lastName={"+ lastName +"}, paymentType={"+ paymentType +"}, paymentGross={"+ paymentGross +"}, paymentFee={"+ paymentFee +"}, settleAmount={"+ settleAmount +"}, memo={"+ memo +"}, payerEmail={"+ payerEmail 
-  val s3 = "}, txnType={"+ txnType +"}, payerStatus={"+ payerStatus +"}, addressStreet={"+ addressStreet +"}, addressCity={"+ addressCity +"}, addressState={"+ addressState +"}, addressZip={"+ addressZip +"}, addressCountry={"+ addressCountry +"}, addressStatus={"+ addressStatus +"}, tax={"+ tax +"}, optionName1={"+ optionName1 +"}, optionSelection1={"+ optionSelection1 +"}, optionName2={"+ optionName2 +"}, optionSelection2={"+ optionSelection2 
-  val s4 = "}, forAuction={"+ forAuction +"}, invoice={"+ invoice +"}, custom={"+ custom +"}, notifyVersion={"+ notifyVersion +"}, verifySign={"+ verifySign +"}, payerBusinessName={"+ payerBusinessName +"}, payerId={"+ payerId +"}, mcCurrency={"+ mcCurrency +"}, mcFee={"+ mcFee +"}, exchangeRate={"+ exchangeRate +"}, settleCurrency={"+ settleCurrency 
+  val s2 = "}, receiverId={"+ receiverId +"}, quantity={"+ quantity +"}, numCartItems={"+ numCartItems +"}, paymentDate={"+ paymentDate +"}, firstName={"+ firstName +"}, lastName={"+ lastName +"}, paymentType={"+ paymentType +"}, paymentGross={"+ paymentGross +"}, paymentFee={"+ paymentFee +"}, settleAmount={"+ settleAmount +"}, memo={"+ memo +"}, payerEmail={"+ payerEmail
+  val s3 = "}, txnType={"+ txnType +"}, payerStatus={"+ payerStatus +"}, addressStreet={"+ addressStreet +"}, addressCity={"+ addressCity +"}, addressState={"+ addressState +"}, addressZip={"+ addressZip +"}, addressCountry={"+ addressCountry +"}, addressStatus={"+ addressStatus +"}, tax={"+ tax +"}, optionName1={"+ optionName1 +"}, optionSelection1={"+ optionSelection1 +"}, optionName2={"+ optionName2 +"}, optionSelection2={"+ optionSelection2
+  val s4 = "}, forAuction={"+ forAuction +"}, invoice={"+ invoice +"}, custom={"+ custom +"}, notifyVersion={"+ notifyVersion +"}, verifySign={"+ verifySign +"}, payerBusinessName={"+ payerBusinessName +"}, payerId={"+ payerId +"}, mcCurrency={"+ mcCurrency +"}, mcFee={"+ mcFee +"}, exchangeRate={"+ exchangeRate +"}, settleCurrency={"+ settleCurrency
   val s5 = "}, parentTxnId={"+ parentTxnId +"}, pendingReason={"+ pendingReason +"}, reasonCode={"+ reasonCode +"}, subscrId={"+ subscrId +"}, subscrDate={"+ subscrDate +"}, subscrEffective={"+ subscrEffective +"}, period1={"+period1+"}, period2={"+period2+"}, period3={"+period3+"}, amount={"+ amount +"}, amount={"+amount1+"}, amount2={"+amount2+"}, amount3={"+amount3
   val s6 = "}, mcAmount1={"+mcAmount1+"}, mcAmount2={"+mcAmount2+"}, mcAmount3={"+mcAmount3+"},recurring={"+ recurring +"}, reattempt,retryAt={"+ retryAt +"}, recurTimes,username={"+ username +"},password={"+ password +"}, auctionClosingDate={"+ auctionClosingDate +"}, auctionMultiItem={"+ auctionMultiItem +"}, auctionBuyerId={"+auctionBuyerId+"}"
   s1 + s2 + s3 + s4 + s5 + s6
@@ -277,7 +277,7 @@ private object StreamResponseProcessor {
     val ret: ListBuffer[String] = new ListBuffer
 
     try {
-      def doRead {
+      def doRead: Unit = {
         reader.readLine() match {
           case null => ()
           case line =>

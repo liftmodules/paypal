@@ -54,3 +54,4 @@ project/plugins/project
 # Pax Runner (for easy OSGi launching)
 runner
 
+.envrc
